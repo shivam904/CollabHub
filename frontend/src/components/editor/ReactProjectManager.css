@@ -1,0 +1,347 @@
+/* React Project Manager */
+.react-project-manager {
+  background: #1e1e1e;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 16px 0;
+  border: 1px solid #3e3e42;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.react-project-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.react-project-header h3 {
+  margin: 0 0 8px 0;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.react-project-header p {
+  margin: 0;
+  color: #888;
+  font-size: 14px;
+}
+
+.react-project-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.control-section {
+  background: #2d2d30;
+  border-radius: 6px;
+  padding: 16px;
+  border: 1px solid #454545;
+}
+
+.control-section h4 {
+  margin: 0 0 12px 0;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.input-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.input-group input {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 12px;
+  border: 1px solid #454545;
+  border-radius: 4px;
+  background: #1e1e1e;
+  color: #ffffff;
+  font-size: 13px;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #007acc;
+  box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+}
+
+.input-group input[type="number"] {
+  width: 80px;
+  min-width: 80px;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Button Styles */
+.btn-create,
+.btn-run,
+.btn-start,
+.btn-stop,
+.btn-open,
+.btn-install,
+.btn-build,
+.btn-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-create {
+  background: #22c55e;
+  color: white;
+}
+
+.btn-create:hover:not(:disabled) {
+  background: #16a34a;
+  transform: translateY(-1px);
+}
+
+.btn-run {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn-run:hover:not(:disabled) {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+.btn-start {
+  background: #10b981;
+  color: white;
+}
+
+.btn-start:hover:not(:disabled) {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.btn-stop {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-stop:hover:not(:disabled) {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+.btn-open {
+  background: #8b5cf6;
+  color: white;
+}
+
+.btn-open:hover:not(:disabled) {
+  background: #7c3aed;
+  transform: translateY(-1px);
+}
+
+.btn-install {
+  background: #f59e0b;
+  color: white;
+}
+
+.btn-install:hover:not(:disabled) {
+  background: #d97706;
+  transform: translateY(-1px);
+}
+
+.btn-build {
+  background: #06b6d4;
+  color: white;
+}
+
+.btn-build:hover:not(:disabled) {
+  background: #0891b2;
+  transform: translateY(-1px);
+}
+
+.btn-status {
+  background: #6b7280;
+  color: white;
+}
+
+.btn-status:hover:not(:disabled) {
+  background: #4b5563;
+  transform: translateY(-1px);
+}
+
+/* Disabled state */
+.btn-create:disabled,
+.btn-run:disabled,
+.btn-start:disabled,
+.btn-stop:disabled,
+.btn-open:disabled,
+.btn-install:disabled,
+.btn-build:disabled,
+.btn-status:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Current Project Status */
+.current-project-status,
+.project-status-info {
+  background: #2d2d30;
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 16px;
+  border: 1px solid #454545;
+}
+
+.current-project-status h4,
+.project-status-info h4 {
+  margin: 0 0 12px 0;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.status-info p {
+  margin: 0;
+  color: #ccc;
+  font-size: 13px;
+}
+
+.status-info strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.status-info a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.status-info a:hover {
+  text-decoration: underline;
+}
+
+.status-running {
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  background: #2d2d30;
+  border-radius: 6px;
+  margin-top: 16px;
+  border: 1px solid #454545;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #454545;
+  border-top: 2px solid #007acc;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-indicator span {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .react-project-manager {
+    padding: 16px;
+    margin: 12px 0;
+  }
+
+  .input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-group input {
+    min-width: auto;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn-create,
+  .btn-run,
+  .btn-start,
+  .btn-stop,
+  .btn-open,
+  .btn-install,
+  .btn-build,
+  .btn-status {
+    justify-content: center;
+  }
+}
+
+/* Dark theme focus styles */
+.react-project-manager:focus-within {
+  border-color: #007acc;
+  box-shadow: 0 4px 20px rgba(0, 122, 204, 0.2);
+}
+
+/* Success/Error states */
+.status-success {
+  color: #10b981;
+}
+
+.status-error {
+  color: #ef4444;
+}
+
+.status-warning {
+  color: #f59e0b;
+}
+
+/* Animation for status changes */
+.current-project-status,
+.project-status-info {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

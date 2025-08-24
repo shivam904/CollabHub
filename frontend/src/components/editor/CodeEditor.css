@@ -1,0 +1,436 @@
+/* Code Editor Container */
+.code-editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure Monaco Editor cursor is visible - Multiple selectors for different Monaco versions */
+.monaco-editor .cursor,
+.monaco-editor .cursors-layer .cursor,
+.monaco-editor .view-cursors .cursor,
+.monaco-editor .view-line .cursor,
+.monaco-editor-background .cursor {
+  background-color: #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  opacity: 1 !important;
+  animation: cursorBlink 1s infinite !important;
+  display: block !important;
+  visibility: visible !important;
+  width: 2px !important;
+  height: 100% !important;
+}
+
+/* Alternative cursor targeting */
+.monaco-editor .view-cursors-layer .cursor {
+  background: #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Blink animation for cursor */
+@keyframes cursorBlink {
+  0%, 50% { 
+    opacity: 1;
+    background-color: #ffffff;
+    border-color: #ffffff;
+  }
+  51%, 100% { 
+    opacity: 0.3;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Force cursor visibility when focused */
+.monaco-editor:focus .cursor,
+.monaco-editor.focused .cursor {
+  background-color: #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  opacity: 1 !important;
+  animation: cursorBlink 1s infinite !important;
+}
+
+/* Ensure editor focuses properly */
+.monaco-editor {
+  outline: none !important;
+  --vscode-editorCursor-foreground: #ffffff !important;
+  --vscode-editorCursor-background: #000000 !important;
+}
+
+.monaco-editor .view-lines {
+  outline: none !important;
+}
+
+/* Direct Monaco CSS variable overrides */
+.monaco-editor {
+  --editor-cursor-foreground: #ffffff !important;
+  --editor-cursor-background: #000000 !important;
+}
+
+/* Force cursor display using Monaco's internal classes */
+.monaco-editor .view-cursors .cursor-line-style,
+.monaco-editor .cursors-layer > div,
+.monaco-editor .view-cursors > div {
+  background: #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  opacity: 1 !important;
+  display: block !important;
+  visibility: visible !important;
+  animation: cursorBlink 1s infinite !important;
+}
+
+/* Target Monaco's specific cursor implementation */
+.monaco-editor .view-overlays .cursor {
+  background: linear-gradient(to right, #ffffff 0%, #ffffff 100%) !important;
+  box-shadow: 1px 0 0 #ffffff !important;
+  opacity: 1 !important;
+}
+
+.monaco-editor .monaco-editor-background {
+  --vscode-editorCursor-foreground: #ffffff !important;
+}
+
+/* Enhance suggestion widget visibility */
+.monaco-editor .suggest-widget {
+  background: #252526 !important;
+  border: 1px solid #454545 !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+.monaco-editor .suggest-widget .monaco-list-row {
+  background: transparent !important;
+  color: #cccccc !important;
+}
+
+.monaco-editor .suggest-widget .monaco-list-row.focused {
+  background: #094771 !important;
+  color: #ffffff !important;
+}
+
+/* Enhance hover widget */
+.monaco-editor .monaco-hover {
+  background: #252526 !important;
+  border: 1px solid #454545 !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Ensure autocomplete is visible */
+.monaco-editor .suggest-widget .monaco-list .monaco-list-row .monaco-highlighted-label .highlight {
+  color: #4fc3f7 !important;
+}
+
+/* Better selection highlighting */
+.monaco-editor .selected-text {
+  background: rgba(173, 214, 255, 0.3) !important;
+}
+
+/* Enhance bracket matching */
+.monaco-editor .bracket-match {
+  background: rgba(0, 100, 0, 0.3) !important;
+  border: 1px solid #00ff00 !important;
+}
+
+/* Editor Header */
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #2d2d30;
+  border-bottom: 1px solid #3e3e42;
+  min-height: 50px;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-name {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.file-language {
+  padding: 4px 8px;
+  background: #007acc;
+  color: white;
+  font-size: 11px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.unsaved-indicator {
+  color: #ff6b6b;
+  font-size: 18px;
+  font-weight: bold;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Editor Actions */
+.editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.save-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.status {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.saving {
+  color: #ffd93d;
+}
+
+.status.unsaved {
+  color: #ff6b6b;
+}
+
+.status.saved {
+  color: #51cf66;
+}
+
+.last-saved {
+  font-size: 11px;
+  color: #888;
+}
+
+.save-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #404040;
+  color: #ccc;
+}
+
+.save-button:hover:not(:disabled) {
+  background: #505050;
+  transform: translateY(-1px);
+}
+
+.save-button.has-changes {
+  background: #007acc;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 122, 204, 0.3);
+}
+
+.save-button.has-changes:hover:not(:disabled) {
+  background: #005a9e;
+  box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
+}
+
+.save-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Run Button */
+.run-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #22c55e;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 8px;
+}
+
+.run-button:hover:not(:disabled) {
+  background: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+
+.run-button.running {
+  background: #f59e0b;
+  animation: pulse 1.5s infinite;
+}
+
+.run-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Editor Content */
+.editor-content {
+  flex: 1;
+  overflow: hidden;
+  background: #1e1e1e;
+}
+
+/* Editor Footer */
+.editor-footer {
+  padding: 8px 16px;
+  background: #2d2d30;
+  border-top: 1px solid #3e3e42;
+}
+
+.file-stats {
+  display: flex;
+  gap: 20px;
+  font-size: 11px;
+  color: #888;
+}
+
+.file-stats span {
+  padding: 2px 0;
+}
+
+.viewer-mode {
+  color: #ffd93d !important;
+  font-weight: 500;
+}
+
+/* Placeholder for when no file is selected */
+.code-editor-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #1e1e1e;
+  border-radius: 8px;
+}
+
+.placeholder-content {
+  text-align: center;
+  color: #888;
+}
+
+.placeholder-content h3 {
+  margin: 0 0 12px 0;
+  color: #ccc;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.placeholder-content p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .editor-header {
+    padding: 8px 12px;
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+  
+  .file-info,
+  .editor-actions {
+    justify-content: center;
+  }
+  
+  .save-status {
+    align-items: center;
+  }
+  
+  .file-stats {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+}
+
+/* Dark theme focus styles */
+.code-editor-container:focus-within {
+  box-shadow: 0 4px 20px rgba(0, 122, 204, 0.3);
+}
+
+/* Force dark theme for all Monaco Editor elements */
+.monaco-editor,
+.monaco-editor-background,
+.monaco-editor .monaco-editor-background {
+  background-color: #1e1e1e !important;
+  color: #d4d4d4 !important;
+}
+
+/* Dark theme for Monaco scrollbars */
+.monaco-editor .scrollbar {
+  background: #2d2d30 !important;
+}
+
+.monaco-editor .scrollbar .slider {
+  background: rgba(121, 121, 121, 0.4) !important;
+}
+
+.monaco-editor .scrollbar .slider:hover {
+  background: rgba(100, 100, 100, 0.7) !important;
+}
+
+/* Dark theme for line numbers */
+.monaco-editor .line-numbers {
+  color: #858585 !important;
+}
+
+/* Dark theme for editor widgets */
+.monaco-editor .monaco-editor-background,
+.monaco-editor .inputarea,
+.monaco-editor .margin,
+.monaco-editor .overflow-guard {
+  background-color: #1e1e1e !important;
+}
+
+/* Ensure no light backgrounds anywhere */
+.editor-content,
+.editor-content > *,
+.editor-content .monaco-editor,
+.editor-content .monaco-editor > * {
+  background-color: #1e1e1e !important;
+}
+
+/* Dark theme for status bar at bottom */
+.editor-footer {
+  background: #007acc !important;
+  color: #ffffff !important;
+  border-top: 1px solid #007acc !important;
+}
+
+.file-stats {
+  color: #ffffff !important;
+}
+
+.file-stats span {
+  color: #ffffff !important;
+}
+
+/* Loading animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,539 @@
+/* Professional VS Code Terminal Styles */
+.professional-terminal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #1e1e1e;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #cccccc;
+  min-height: 0;
+}
+
+/* Terminal Header */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 35px;
+  background: #2d2d30;
+  border-bottom: 1px solid #3e3e42;
+  padding: 0;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.terminal-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  height: 100%;
+}
+
+.title-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #cccccc;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.status-text {
+  font-size: 11px;
+  color: #cccccc;
+  opacity: 0.8;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.header-btn {
+  background: transparent;
+  border: none;
+  color: #cccccc;
+  cursor: pointer;
+  padding: 0 8px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  border-radius: 0;
+}
+
+.header-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.header-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Dropdown Menu */
+.terminal-dropdown-container {
+  position: relative;
+  height: 100%;
+}
+
+.terminal-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #383838;
+  border: 1px solid #464647;
+  border-radius: 3px;
+  min-width: 180px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  padding: 4px 0;
+  font-size: 13px;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: #cccccc;
+  transition: background-color 0.1s ease;
+}
+
+.dropdown-item:hover {
+  background: #094771;
+}
+
+.dropdown-separator {
+  height: 1px;
+  background: #464647;
+  margin: 4px 0;
+}
+
+/* Terminal Tabs */
+.terminal-tabs-bar {
+  background: #2d2d30;
+  border-bottom: 1px solid #3e3e42;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.terminal-tabs {
+  display: flex;
+  align-items: flex-end;
+  height: 35px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.terminal-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.terminal-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  height: 35px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid #3e3e42;
+  cursor: pointer;
+  font-size: 13px;
+  color: #cccccc;
+  transition: all 0.15s ease;
+  min-width: 120px;
+  max-width: 200px;
+  justify-content: space-between;
+  position: relative;
+  white-space: nowrap;
+}
+
+.terminal-tab:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.terminal-tab.active {
+  background: #1e1e1e;
+  border-bottom: 2px solid #007acc;
+  color: #ffffff;
+}
+
+.terminal-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #007acc;
+}
+
+.tab-title {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tab-input {
+  background: #3c3c3c;
+  border: 1px solid #007acc;
+  border-radius: 2px;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 2px 6px;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+}
+
+.tab-input:focus {
+  background: #404040;
+  border-color: #0e639c;
+}
+
+.tab-close {
+  background: transparent;
+  border: none;
+  color: #cccccc;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.15s ease;
+  margin-left: 4px;
+}
+
+.terminal-tab:hover .tab-close {
+  opacity: 0.7;
+}
+
+.tab-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+}
+
+/* Terminal Content */
+.terminal-content {
+  flex: 1;
+  position: relative;
+  background: #1e1e1e;
+  overflow: hidden;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-instance {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-instance.hidden {
+  display: none;
+}
+
+.terminal-instance.active {
+  display: block;
+}
+
+/* XTerm Integration */
+.professional-terminal .xterm,
+.vscode-terminal .xterm {
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+  display: block;
+}
+
+.professional-terminal .xterm-viewport,
+.vscode-terminal .xterm-viewport {
+  background-color: transparent !important;
+  overflow-y: auto !important;
+  scrollbar-width: thin;
+  scrollbar-color: #424242 transparent;
+  scroll-behavior: smooth;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+  top: 0 !important;
+}
+
+.professional-terminal .xterm-screen,
+.vscode-terminal .xterm-screen {
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+  top: 0 !important;
+}
+
+.professional-terminal .xterm-cursor-layer {
+  z-index: 3;
+}
+
+.professional-terminal .xterm-selection-layer {
+  z-index: 2;
+}
+
+.professional-terminal .xterm-link-layer {
+  z-index: 4;
+}
+
+/* Scrollbar Styling */
+.professional-terminal .xterm-viewport::-webkit-scrollbar,
+.vscode-terminal .xterm-viewport::-webkit-scrollbar {
+  width: 10px;
+}
+
+.professional-terminal .xterm-viewport::-webkit-scrollbar-track,
+.vscode-terminal .xterm-viewport::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.professional-terminal .xterm-viewport::-webkit-scrollbar-thumb,
+.vscode-terminal .xterm-viewport::-webkit-scrollbar-thumb {
+  background: #424242;
+  border-radius: 0;
+  border: none;
+}
+
+.professional-terminal .xterm-viewport::-webkit-scrollbar-thumb:hover {
+  background: #4e4e4e;
+}
+
+.professional-terminal .xterm-viewport::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Text Selection */
+.professional-terminal ::selection {
+  background: #264f78;
+}
+
+.professional-terminal ::-moz-selection {
+  background: #264f78;
+}
+
+/* Loading Overlay */
+.terminal-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(30, 30, 30, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  backdrop-filter: blur(2px);
+}
+
+.loading-content {
+  text-align: center;
+  color: #cccccc;
+}
+
+.loading-content p {
+  margin: 12px 0 0 0;
+  font-size: 13px;
+  color: #cccccc;
+  opacity: 0.8;
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #3e3e42;
+  border-top: 2px solid #007acc;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Focus States */
+.professional-terminal:focus-within .terminal-tab.active {
+  border-bottom-color: #007acc;
+}
+
+.header-btn:focus,
+.terminal-tab:focus,
+.tab-close:focus {
+  outline: 1px solid #007acc;
+  outline-offset: -1px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .terminal-header {
+    height: 40px;
+  }
+  
+  .terminal-tabs {
+    height: 40px;
+  }
+  
+  .terminal-tab {
+    height: 40px;
+    min-width: 100px;
+    padding: 0 8px;
+  }
+  
+  .title-text {
+    display: none;
+  }
+  
+  .status-text {
+    display: none;
+  }
+  
+  .terminal-dropdown {
+    min-width: 150px;
+  }
+}
+
+/* Smooth Animations */
+.terminal-tab,
+.header-btn,
+.dropdown-item {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Professional Color Scheme */
+.professional-terminal {
+  --primary-blue: #007acc;
+  --primary-blue-hover: #0e639c;
+  --background-dark: #1e1e1e;
+  --background-darker: #2d2d30;
+  --border-color: #3e3e42;
+  --text-primary: #cccccc;
+  --text-secondary: #999999;
+  --success-color: #0dbc79;
+  --warning-color: #e5e510;
+  --error-color: #cd3131;
+}
+
+/* High Contrast Support */
+@media (prefers-contrast: high) {
+  .professional-terminal {
+    border: 1px solid #ffffff;
+  }
+  
+  .terminal-header {
+    border-bottom: 2px solid #ffffff;
+  }
+  
+  .terminal-tab.active {
+    border-bottom: 3px solid #00ffff;
+  }
+}
+
+/* Dark Theme Enhancements */
+@media (prefers-color-scheme: dark) {
+  .professional-terminal {
+    background: #1e1e1e;
+  }
+  
+  .terminal-instance {
+    background: #1e1e1e;
+  }
+} 
+
+/* Fix XTerm internal spacing issues */
+.professional-terminal .xterm-helper-textarea,
+.vscode-terminal .xterm-helper-textarea {
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+.professional-terminal .xterm-rows,
+.vscode-terminal .xterm-rows {
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 0 !important;
+}
+
+.professional-terminal .xterm-viewport .xterm-rows,
+.vscode-terminal .xterm-viewport .xterm-rows {
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+  top: 0 !important;
+} 
+
+/* Critical fix for XTerm content positioning */
+.professional-terminal .xterm .xterm-viewport,
+.vscode-terminal .xterm .xterm-viewport,
+.professional-terminal .xterm-viewport,
+.vscode-terminal .xterm-viewport {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.professional-terminal .xterm-viewport .xterm-rows,
+.vscode-terminal .xterm-viewport .xterm-rows {
+  position: relative !important;
+  top: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+} 

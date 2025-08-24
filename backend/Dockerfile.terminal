@@ -1,0 +1,154 @@
+FROM ubuntu:22.04
+
+# Prevent interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+# Update and install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl wget git vim nano htop tree unzip zip \
+    build-essential software-properties-common \
+    ca-certificates gnupg lsb-release sudo \
+    ncurses-base ncurses-term terminfo \
+    bash-completion less man-db \
+    python3 python3-pip python3-venv python3-dev \
+    openjdk-17-jdk openjdk-17-jre \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js 20
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
+
+# Install Go 1.21
+RUN wget https://go.dev/dl/go1.21.5.linux-amd64.tar.gz \
+    && tar -C /usr/local -xzf go1.21.5.linux-amd64.tar.gz \
+    && rm go1.21.5.linux-amd64.tar.gz
+
+# Install Rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+# Install PHP
+RUN apt-get update && apt-get install -y \
+    php php-cli php-fpm php-mysql php-pgsql php-sqlite3 \
+    php-gd php-mbstring php-xml php-curl php-zip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Ruby
+RUN apt-get update && apt-get install -y \
+    ruby ruby-dev ruby-bundler \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Perl
+RUN apt-get update && apt-get install -y \
+    perl perl-modules \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install C/C++ compilers and tools
+RUN apt-get update && apt-get install -y \
+    gcc g++ make cmake \
+    clang clang-tidy clang-format \
+    valgrind gdb \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install database clients
+RUN apt-get update && apt-get install -y \
+    mysql-client postgresql-client sqlite3 \
+    redis-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install web servers and tools
+RUN apt-get update && apt-get install -y \
+    nginx apache2-utils \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install monitoring and debugging tools
+RUN apt-get update && apt-get install -y \
+    strace ltrace \
+    iotop \
+    net-tools netcat \
+    telnet ssh \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set environment paths
+ENV PATH="/usr/local/go/bin:$PATH"
+ENV PATH="/root/.cargo/bin:$PATH"
+ENV GOPATH="/workspace/go"
+ENV JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+ENV PYTHONPATH="/workspace/python"
+
+# Install global npm packages
+RUN npm install -g \
+    typescript ts-node nodemon \
+    create-react-app \
+    serve http-server live-server \
+    yarn pnpm \
+    eslint prettier \
+    @angular/cli @vue/cli \
+    express-generator
+
+# Install Python packages
+RUN pip3 install \
+    flask fastapi uvicorn django \
+    requests pytest black flake8 \
+    pandas numpy matplotlib \
+    jupyter notebook \
+    pipenv poetry
+
+# Install Ruby gems
+RUN gem install \
+    rails sinatra \
+    bundler rake \
+    rspec cucumber
+
+# Install PHP Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Create developer user
+RUN useradd -m -s /bin/bash developer \
+    && echo "developer ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
+    && mkdir -p /workspace \
+    && chown -R developer:developer /workspace
+
+# Set working directory
+WORKDIR /workspace
+
+# Switch to developer user
+USER developer
+
+# Setup shell environment
+RUN echo 'export TERM=xterm' >> ~/.bashrc \
+    && echo 'export PS1="developer@collabhub:\\w$ "' >> ~/.bashrc \
+    && echo 'alias ll="ls -alF"' >> ~/.bashrc \
+    && echo 'alias python="python3"' >> ~/.bashrc \
+    && echo 'alias pip="pip3"' >> ~/.bashrc \
+    && echo 'alias g="git"' >> ~/.bashrc \
+    && echo 'alias n="npm"' >> ~/.bashrc \
+    && echo 'alias p="python3"' >> ~/.bashrc \
+    && echo 'alias j="java"' >> ~/.bashrc \
+    && echo 'alias go="go"' >> ~/.bashrc \
+    && echo 'stty echo' >> ~/.bashrc \
+    && echo 'stty icanon' >> ~/.bashrc \
+    && echo 'stty erase ^H' >> ~/.bashrc \
+    && echo 'export PATH="/usr/local/go/bin:$PATH"' >> ~/.bashrc \
+    && echo 'export PATH="/root/.cargo/bin:$PATH"' >> ~/.bashrc \
+    && echo 'export GOPATH="/workspace/go"' >> ~/.bashrc \
+    && echo 'export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"' >> ~/.bashrc \
+    && echo 'export PYTHONPATH="/workspace/python"' >> ~/.bashrc
+
+# Terminal setup
+ENV TERM=xterm
+ENV PS1="developer@collabhub:\\w$ "
+
+# Create common directories
+RUN mkdir -p /workspace/{projects,go,python,nodejs,rust,ruby,php}
+
+# Expose ports for development servers
+EXPOSE 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010
+EXPOSE 8080 8081 8082 8083 8084 8085 8086 8087 8088 8089 8090
+EXPOSE 5000 5001 5002 5003 5004 5005 5006 5007 5008 5009 5010
+EXPOSE 8000 8001 8002 8003 8004 8005 8006 8007 8008 8009 8010
+EXPOSE 4000 4001 4002 4003 4004 4005 4006 4007 4008 4009 4010
+
+# Start bash with login shell
+CMD ["/bin/bash", "-l"] 

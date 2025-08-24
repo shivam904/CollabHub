@@ -1,0 +1,197 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Main editor layout */
+.vscode-root {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+}
+
+/* File explorer */
+.vscode-explorer {
+  width: 260px;
+  background: #23272e;
+  border-right: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Editor area */
+.vscode-editor-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Top bar with collaborators */
+.vscode-topbar {
+  height: 40px;
+  background: #23272e;
+  border-bottom: 1px solid #222;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 16px;
+  flex-shrink: 0;
+}
+
+.vscode-collaborators {
+  display: flex;
+  gap: 8px;
+}
+
+.vscode-collab-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #4FC3F7;
+  object-fit: cover;
+  background: #444;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+.vscode-collab-avatar-fallback {
+  background: #4FC3F7;
+}
+
+/* Tabs */
+.vscode-tabs {
+  height: 36px;
+  background: #23272e;
+  border-bottom: 1px solid #222;
+  display: flex;
+  align-items: flex-end;
+  padding-left: 8px;
+  flex-shrink: 0;
+}
+
+.vscode-tab {
+  display: flex;
+  align-items: center;
+  background: #1e1e1e;
+  border: 1px solid #23272e;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  padding: 0 14px;
+  height: 32px;
+  font-size: 14px;
+  color: #d4d4d4;
+  margin-right: 6px;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.vscode-tab.active {
+  background: #23272e;
+  color: #fff;
+  border-bottom: 2px solid #2563eb;
+}
+
+.vscode-tab-close {
+  margin-left: 8px;
+  color: #8c8c8c;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* Editor content area */
+.vscode-editor-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #1e1e1e;
+  min-height: 0;
+}
+
+/* Empty state */
+.vscode-empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+/* Code editor component */
+.editor-code {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #1e1e1e;
+  min-height: 0;
+}
+
+/* Toolbar */
+.editor-toolbar {
+  height: 32px;
+  background: #23272e;
+  border-bottom: 1px solid #222;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  font-size: 12px;
+  color: #8c8c8c;
+  flex-shrink: 0;
+}
+
+/* Monaco editor container */
+.editor-code > div {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* Status bar */
+.editor-statusbar {
+  height: 28px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  flex-shrink: 0;
+}
+
+/* File explorer content */
+.editor-sidebar-content {
+  flex: 1;
+  background: #23272e;
+  color: #fff;
+  padding: 8px 0;
+  overflow-y: auto;
+}
+
+/* Hide horizontal scrollbars */
+html::-webkit-scrollbar:horizontal,
+body::-webkit-scrollbar:horizontal,
+.vscode-root::-webkit-scrollbar:horizontal,
+.vscode-explorer::-webkit-scrollbar:horizontal {
+  display: none !important;
+  height: 0 !important;
+} 
