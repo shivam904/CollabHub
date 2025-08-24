@@ -10,6 +10,11 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
 
 # Logs
 logs
@@ -66,4 +71,16 @@ uploads/
 
 # Temporary files
 tmp/
-temp/ 
+temp/
+
+# Security and sensitive files
+*.key
+*.pem
+*.p12
+*.pfx
+serviceAccountKey.json
+firebase-service-account.json
+google-credentials.json
+secrets/
+credentials/
+config/serviceAccountKey.json 

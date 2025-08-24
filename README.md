@@ -85,10 +85,41 @@ FIREBASE_PRIVATE_KEY=your_firebase_private_key
 FIREBASE_CLIENT_EMAIL=your_firebase_client_email
 ```
 
+**Firebase Setup:**
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Create a new project or select existing one
+3. Go to Project Settings > Service Accounts
+4. Click "Generate new private key"
+5. Download the JSON file and rename it to `serviceAccountKey.json`
+6. Place it in `backend/config/` directory
+7. Update your backend `.env` file with the Firebase credentials
+8. Go to Project Settings > General
+9. Copy the Firebase configuration values
+10. Update your frontend `.env` file with the Firebase config
+
 ### **3. Frontend Setup**
 ```bash
 cd ../frontend
 npm install
+
+# Create environment file
+cp ../frontend.env.example .env
+
+# Configure your Firebase environment variables
+nano .env
+```
+
+**Required Frontend Environment Variables:**
+```env
+VITE_FIREBASE_API_KEY=your_firebase_api_key_here
+VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+VITE_API_URL=http://localhost:5000
+VITE_WS_URL=ws://localhost:5000
 ```
 
 ### **4. Start Development Servers**
@@ -248,6 +279,12 @@ DELETE /api/terminal/:terminalId
 - **Role-based Access Control** - Fine-grained permissions
 - **API Rate Limiting** - Prevent abuse
 
+### **Sensitive File Management**
+- **Never commit credentials** - All sensitive files are gitignored
+- **Environment variables** - Use `.env` files for configuration
+- **Service account keys** - Store Firebase credentials securely
+- **Template files** - Use `.example` files for configuration examples
+
 ### **Data Security**
 - **Input Validation** - Sanitize all user inputs
 - **File Upload Restrictions** - Whitelist allowed file types
@@ -285,6 +322,8 @@ docker-compose -f docker-compose.production.yml up -d
 - **Heroku** - Container deployment
 
 ### **Environment Variables for Production**
+
+**Backend (.env.production):**
 ```env
 NODE_ENV=production
 PORT=5000
@@ -295,6 +334,19 @@ FIREBASE_PROJECT_ID=your-firebase-project
 FIREBASE_PRIVATE_KEY=your-firebase-private-key
 FIREBASE_CLIENT_EMAIL=your-firebase-client-email
 REDIS_URL=redis://your-redis-instance
+```
+
+**Frontend (.env.production):**
+```env
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+VITE_API_URL=https://your-domain.com
+VITE_WS_URL=wss://your-domain.com
 ```
 
 ---

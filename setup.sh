@@ -53,22 +53,54 @@ cd frontend
 echo "Installing frontend dependencies..."
 npm install
 
+# Create .env file if it doesn't exist
+if [ ! -f .env ]; then
+    echo "Creating frontend .env file..."
+    cat > .env << EOF
+# Firebase Configuration
+VITE_FIREBASE_API_KEY=your_firebase_api_key_here
+VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+
+# API Configuration
+VITE_API_URL=http://localhost:5000
+VITE_WS_URL=ws://localhost:5000
+
+# Development Configuration
+VITE_DEBUG_MODE=false
+VITE_LOG_LEVEL=info
+EOF
+    echo "✅ Created frontend .env file"
+else
+    echo "✅ Frontend .env file already exists"
+fi
+
 cd ..
 
 echo ""
 echo "✅ Setup completed successfully!"
 echo ""
 echo "📋 Next steps:"
-echo "1. Start MongoDB (if not already running):"
+echo "1. Configure Firebase:"
+echo "   - Go to https://console.firebase.google.com/"
+echo "   - Create a new project or select existing one"
+echo "   - Update backend/.env with Firebase credentials"
+echo "   - Update frontend/.env with Firebase config"
+echo ""
+echo "2. Start MongoDB (if not already running):"
 echo "   mongod"
 echo ""
-echo "2. Start the backend server:"
+echo "3. Start the backend server:"
 echo "   cd backend && npm start"
 echo ""
-echo "3. Start the frontend development server:"
+echo "4. Start the frontend development server:"
 echo "   cd frontend && npm run dev"
 echo ""
-echo "4. Open http://localhost:5173 in your browser"
+echo "5. Open http://localhost:5173 in your browser"
 echo ""
 echo "📚 For more information, see README.md"
 echo ""

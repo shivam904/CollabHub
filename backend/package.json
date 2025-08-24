@@ -17,7 +17,8 @@
     "docker:build": "docker build -t collabhub-backend:latest .",
     "docker:build:terminal": "docker build -f Dockerfile.terminal -t collabhub-dev-env:latest .",
     "docker:build:production": "docker build -f Dockerfile.production -t collabhub-backend:production .",
-    "docker:rebuild": "docker rmi collabhub-dev-env:latest 2>/dev/null || true && npm run docker:build:terminal"
+    "docker:rebuild": "docker rmi collabhub-dev-env:latest 2>/dev/null || true && npm run docker:build:terminal",
+    "setup:firebase": "node ../setup-firebase.js"
   },
   "keywords": [
     "collaboration",

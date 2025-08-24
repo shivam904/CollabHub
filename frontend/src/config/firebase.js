@@ -3,16 +3,15 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-// Your Firebase configuration
-// Replace with your actual Firebase config
+// Firebase configuration from environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyDaEYcIDx2qa-n3PRmOc0fuauPBzkNVwUw",
-  authDomain: "collabhub-346af.firebaseapp.com",
-  projectId: "collabhub-346af",
-  storageBucket: "collabhub-346af.firebasestorage.app",
-  messagingSenderId: "539659083314",
-  appId: "1:539659083314:web:9e8b43b89ea314b961262b",
-  measurementId: "G-5ZWLVECCXF"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
